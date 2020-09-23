@@ -29,7 +29,7 @@ const BookSchema = new Schema({
 
   borrower: {
     type: String,
-    require: true,
+    require: false,
   },
 });
 

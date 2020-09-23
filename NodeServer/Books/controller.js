@@ -21,6 +21,43 @@ var BookController = function () {
         });
     });
   };
+
+  this.getAll = function () {
+    return new Promise((resolve, reject) => {
+      BookSchema.find()
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "Gell All Books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.update = function (id, updateData) {
+    return new Promise((resolve, reject) => {
+      BookSchema.updateOne({ _id: id }, updateData)
+        .then(() => {
+          resolve({ status: 200, message: "update book success" });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.delete = function (id) {
+    return new Promise((resolve, reject) => {
+      BookSchema.remove({ _id: id })
+        .then(() => {
+          resolve({ status: 200, message: "delete book success" });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
 };
 
 module.exports = new BookController();
