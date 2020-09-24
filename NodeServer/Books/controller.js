@@ -48,6 +48,19 @@ var BookController = function () {
     });
   };
 
+  this.getSingle = function (id) {
+    return new Promise((resolve, reject) => {
+      BookSchema.find({ _id: id })
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected book", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
   this.update = function (id, updateData) {
     return new Promise((resolve, reject) => {
       BookSchema.updateOne({ _id: id }, updateData)
