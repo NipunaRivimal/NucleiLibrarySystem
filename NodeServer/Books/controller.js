@@ -1,5 +1,5 @@
-var mongoose = require("../mongoose.config");
-var BookSchema = mongoose.model("Book");
+const mongoose = require("../mongoose.config");
+const BookSchema = mongoose.model("Book");
 
 var BookController = function () {
   this.add = function (bookInstance) {

@@ -1,5 +1,5 @@
-var mongoose = require("../mongoose.config");
-var UserSchema = mongoose.model("User");
+const mongoose = require("../mongoose.config");
+const UserSchema = mongoose.model("User");
 
 var UserController = function () {
   this.add = function (userInstance) {
