@@ -1,5 +1,4 @@
-Client/node_modules/
-Client/.idea/
-Client/package-lock.json
+reactweb/node_modules/
+reactweb/package-lock.json
 NodeServer/node_modules/
 NodeServer/package-lock.json
