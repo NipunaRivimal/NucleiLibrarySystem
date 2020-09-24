@@ -2,6 +2,7 @@ const Express = require("express");
 const bodyParser = require("body-parser");
 const Cors = require("cors");
 const BookRoute = require("./Books/route");
+const UserRoute = require("./Users/route");
 
 const app = Express();
 
@@ -9,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(Cors());
 app.use("/books", BookRoute);
+app.use("/user", UserRoute);
 
 app.listen("8081", "127.0.0.1", function (err) {
   if (err) {
