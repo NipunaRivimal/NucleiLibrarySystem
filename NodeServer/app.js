@@ -1,9 +1,9 @@
-var Express = require("express");
-var bodyParser = require("body-parser");
-var Cors = require("cors");
-var BookRoute = require("./Books/route");
+const Express = require("express");
+const bodyParser = require("body-parser");
+const Cors = require("cors");
+const BookRoute = require("./Books/route");
 
-var app = Express();
+const app = Express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
