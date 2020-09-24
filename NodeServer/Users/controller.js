@@ -8,6 +8,8 @@ var UserController = function () {
         userid: userInstance.userid,
         firstname: userInstance.firstname,
         lastname: userInstance.lastname,
+        mobilenumber: userInstance.mobilenumber,
+        homeaddress: userInstance.homeaddress,
         username: userInstance.username,
         password: userInstance.password,
         joindate: userInstance.joindate,

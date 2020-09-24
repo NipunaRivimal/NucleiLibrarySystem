@@ -49,6 +49,16 @@ const UserSchema = new Schema({
     require: true,
   },
 
+  mobilenumber: {
+    type: String,
+    require: true,
+  },
+
+  homeaddress: {
+    type: String,
+    require: true,
+  },
+
   username: {
     type: String,
     require: true,
