@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var controller = require("./controller");
+const express = require("express");
+const router = express.Router();
+const controller = require("./controller");
 
 router.post("/adduser", (req, res) => {
   controller

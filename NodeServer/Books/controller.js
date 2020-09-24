@@ -49,7 +49,7 @@ var BookController = function () {
 
   this.delete = function (id) {
     return new Promise((resolve, reject) => {
-      BookSchema.remove({ _id: id })
+      BookSchema.deleteOne({ _id: id })
         .then(() => {
           resolve({ status: 200, message: "delete book success" });
         })

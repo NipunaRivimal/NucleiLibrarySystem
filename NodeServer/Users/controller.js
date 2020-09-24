@@ -49,7 +49,7 @@ var UserController = function () {
 
   this.delete = function (id) {
     return new Promise((resolve, reject) => {
-      UserSchema.remove({ _id: id })
+      UserSchema.deleteOne({ _id: id })
         .then(() => {
           resolve({ status: 200, message: "delete user success" });
         })
