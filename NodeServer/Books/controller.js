@@ -35,6 +35,19 @@ var BookController = function () {
     });
   };
 
+  this.getSelected = function (status) {
+    return new Promise((resolve, reject) => {
+      BookSchema.find({ issuestatus: status })
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
   this.update = function (id, updateData) {
     return new Promise((resolve, reject) => {
       BookSchema.updateOne({ _id: id }, updateData)

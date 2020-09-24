@@ -32,6 +32,17 @@ router.get("/getallbooks", (req, res) => {
     });
 });
 
+router.get("/getselectedbooks/:id", (req, res) => {
+  controller
+    .getSelected(req.params.id)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
 router.put("/updatebooks/:id", (req, res) => {
   controller
     .update(req.params.id, req.body)
