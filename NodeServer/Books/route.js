@@ -60,7 +60,7 @@ router.put("/updatebooks/:id", (req, res) => {
     .then((response) => {
       //   res.status(response.status).send(response);
       controller
-        .getAll()
+        .getSingle(req.params.id)
         .then((response) => {
           res.status(response.status).send(response);
         })
