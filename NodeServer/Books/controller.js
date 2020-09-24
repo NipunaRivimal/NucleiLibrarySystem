@@ -7,6 +7,7 @@ var BookController = function () {
       var Book = new BookSchema({
         bookcode: bookInstance.bookcode,
         name: bookInstance.name,
+        author: bookInstance.author,
         description: bookInstance.description,
         addeddate: bookInstance.addeddate,
         issuestatus: bookInstance.issuestatus,
