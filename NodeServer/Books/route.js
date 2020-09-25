@@ -32,13 +32,57 @@ router.get("/getallbooks", (req, res) => {
     });
 });
 
+router.get("/getselectedbooks/:id", (req, res) => {
+  controller
+    .getSelected(req.params.id)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
+router.get("/getsinglebook/:id", (req, res) => {
+  controller
+    .getSingle(req.params.id)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
+router.get("/getfilteredbooksname/:name", (req, res) => {
+  controller
+    .getFilteredName(req.params.name)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
+router.get("/getfilteredbooksauthor/:author", (req, res) => {
+  controller
+    .getFilteredAuthor(req.params.author)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
 router.put("/updatebooks/:id", (req, res) => {
   controller
     .update(req.params.id, req.body)
     .then((response) => {
       //   res.status(response.status).send(response);
       controller
-        .getAll()
+        .getSingle(req.params.id)
         .then((response) => {
           res.status(response.status).send(response);
         })

@@ -7,6 +7,7 @@ var BookController = function () {
       var Book = new BookSchema({
         bookcode: bookInstance.bookcode,
         name: bookInstance.name,
+        author: bookInstance.author,
         description: bookInstance.description,
         addeddate: bookInstance.addeddate,
         issuestatus: bookInstance.issuestatus,
@@ -28,6 +29,64 @@ var BookController = function () {
         .exec()
         .then((data) => {
           resolve({ status: 200, message: "Gell All Books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.getSelected = function (status) {
+    return new Promise((resolve, reject) => {
+      BookSchema.find({ issuestatus: status })
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.getSingle = function (id) {
+    return new Promise((resolve, reject) => {
+      BookSchema.find({ _id: id })
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected book", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.getFilteredName = function (name) {
+    return new Promise((resolve, reject) => {
+      // var regex = RegExp("/.*" + name + ".*/");
+      var query = { name: new RegExp("^" + name) };
+      // UserSchema.find({ firstname: { $search: name } })
+      BookSchema.find(query)
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.getFilteredAuthor = function (author) {
+    return new Promise((resolve, reject) => {
+      // var regex = RegExp("/.*" + name + ".*/");
+      var query = { author: new RegExp("^" + author) };
+      // UserSchema.find({ firstname: { $search: name } })
+      BookSchema.find(query)
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
         })
         .catch((err) => {
           reject({ status: 404, message: "err:-" + err });
