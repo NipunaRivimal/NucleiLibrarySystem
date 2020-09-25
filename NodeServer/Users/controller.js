@@ -50,6 +50,38 @@ var UserController = function () {
     });
   };
 
+  this.getFilteredName = function (name) {
+    return new Promise((resolve, reject) => {
+      // var regex = RegExp("/.*" + name + ".*/");
+      var query = { firstname: new RegExp("^" + name) };
+      // UserSchema.find({ firstname: { $search: name } })
+      UserSchema.find(query)
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected member", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.getFilteredId = function (id) {
+    return new Promise((resolve, reject) => {
+      // var regex = RegExp("/.*" + name + ".*/");
+      var query = { userid: new RegExp("^" + id) };
+      // UserSchema.find({ firstname: { $search: name } })
+      UserSchema.find(query)
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected member", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
   this.update = function (id, updateData) {
     return new Promise((resolve, reject) => {
       UserSchema.updateOne({ _id: id }, updateData)

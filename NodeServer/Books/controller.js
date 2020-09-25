@@ -62,6 +62,38 @@ var BookController = function () {
     });
   };
 
+  this.getFilteredName = function (name) {
+    return new Promise((resolve, reject) => {
+      // var regex = RegExp("/.*" + name + ".*/");
+      var query = { name: new RegExp("^" + name) };
+      // UserSchema.find({ firstname: { $search: name } })
+      BookSchema.find(query)
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
+  this.getFilteredAuthor = function (author) {
+    return new Promise((resolve, reject) => {
+      // var regex = RegExp("/.*" + name + ".*/");
+      var query = { author: new RegExp("^" + author) };
+      // UserSchema.find({ firstname: { $search: name } })
+      BookSchema.find(query)
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
   this.update = function (id, updateData) {
     return new Promise((resolve, reject) => {
       BookSchema.updateOne({ _id: id }, updateData)

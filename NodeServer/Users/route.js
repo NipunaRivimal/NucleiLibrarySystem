@@ -43,6 +43,28 @@ router.get("/getsingleuser/:id", (req, res) => {
     });
 });
 
+router.get("/getfiltereduserfname/:name", (req, res) => {
+  controller
+    .getFilteredName(req.params.name)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
+router.get("/getfiltereduserid/:id", (req, res) => {
+  controller
+    .getFilteredId(req.params.id)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
 router.put("/updateuser/:id", (req, res) => {
   controller
     .update(req.params.id, req.body)

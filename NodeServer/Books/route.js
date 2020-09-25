@@ -54,6 +54,28 @@ router.get("/getsinglebook/:id", (req, res) => {
     });
 });
 
+router.get("/getfilteredbooksname/:name", (req, res) => {
+  controller
+    .getFilteredName(req.params.name)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
+router.get("/getfilteredbooksauthor/:author", (req, res) => {
+  controller
+    .getFilteredAuthor(req.params.author)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
 router.put("/updatebooks/:id", (req, res) => {
   controller
     .update(req.params.id, req.body)
