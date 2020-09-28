@@ -1,6 +1,7 @@
 const Express = require("express");
 const bodyParser = require("body-parser");
 const Cors = require("cors");
+const AuthRoute = require("./Auth/route");
 const BookRoute = require("./Books/route");
 const UserRoute = require("./Users/route");
 
@@ -9,6 +10,7 @@ const app = Express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(Cors());
+app.use("/auth", AuthRoute);
 app.use("/books", BookRoute);
 app.use("/user", UserRoute);
 

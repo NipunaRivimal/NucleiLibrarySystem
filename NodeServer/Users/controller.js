@@ -1,8 +1,11 @@
 const mongoose = require("../mongoose.config");
 const UserSchema = mongoose.model("User");
+const bcrypt = require("bcrypt");
 
 var UserController = function () {
-  this.add = function (userInstance) {
+  this.add = async function (userInstance) {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(userInstance.password, salt);
     return new Promise((resolve, reject) => {
       var User = new UserSchema({
         userid: userInstance.userid,
@@ -10,13 +13,14 @@ var UserController = function () {
         lastname: userInstance.lastname,
         mobilenumber: userInstance.mobilenumber,
         homeaddress: userInstance.homeaddress,
-        username: userInstance.username,
-        password: userInstance.password,
+        email: userInstance.email,
+        password: hashedPassword,
+        usertype: userInstance.usertype,
         joindate: userInstance.joindate,
       });
       User.save()
         .then(() => {
-          resolve({ status: 200, message: "User Added" });
+          resolve({ status: 201, message: "User Added" });
         })
         .catch((err) => {
           reject({ status: 404, message: "err:-" + err });
