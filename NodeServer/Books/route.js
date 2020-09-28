@@ -45,7 +45,7 @@ router.get("/getselectedbooks/:id", (req, res) => {
 
 router.get("/getselectedbooksbyuser/:id", (req, res) => {
   controller
-    .getSelected(req.params.id)
+    .getSelectedByUser(req.params.id)
     .then((response) => {
       res.status(response.status).send(response);
     })
