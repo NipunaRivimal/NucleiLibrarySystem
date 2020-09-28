@@ -36,6 +36,16 @@ const BookSchema = new Schema({
     type: String,
     require: false,
   },
+
+  issueddate: {
+    type: String,
+    require: false,
+  },
+
+  returndate: {
+    type: String,
+    require: false,
+  },
 });
 
 const UserSchema = new Schema({
