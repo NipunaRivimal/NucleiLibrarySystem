@@ -49,6 +49,19 @@ var BookController = function () {
     });
   };
 
+  this.getSelectedByUser = function (id) {
+    return new Promise((resolve, reject) => {
+      BookSchema.find({ borrower: id })
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
   this.getSingle = function (id) {
     return new Promise((resolve, reject) => {
       BookSchema.find({ _id: id })
