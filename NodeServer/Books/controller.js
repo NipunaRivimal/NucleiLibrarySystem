@@ -78,7 +78,7 @@ var BookController = function () {
   this.getFilteredName = function (name) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
-      var query = { name: new RegExp("^" + name) };
+      var query = { name: new RegExp("^" + name, "i") };
       // UserSchema.find({ firstname: { $search: name } })
       BookSchema.find(query)
         .exec()
@@ -94,7 +94,7 @@ var BookController = function () {
   this.getFilteredAuthor = function (author) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
-      var query = { author: new RegExp("^" + author) };
+      var query = { author: new RegExp("^" + author, "i") };
       // UserSchema.find({ firstname: { $search: name } })
       BookSchema.find(query)
         .exec()

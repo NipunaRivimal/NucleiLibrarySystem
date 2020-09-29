@@ -57,7 +57,7 @@ var UserController = function () {
   this.getFilteredName = function (name) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
-      var query = { firstname: new RegExp("^" + name) };
+      var query = { firstname: new RegExp("^" + name, "i") };
       // UserSchema.find({ firstname: { $search: name } })
       UserSchema.find(query)
         .exec()
@@ -73,7 +73,7 @@ var UserController = function () {
   this.getFilteredId = function (id) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
-      var query = { userid: new RegExp("^" + id) };
+      var query = { userid: new RegExp("^" + id, "i") };
       // UserSchema.find({ firstname: { $search: name } })
       UserSchema.find(query)
         .exec()
