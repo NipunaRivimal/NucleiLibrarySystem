@@ -1,6 +1,7 @@
 const mongoose = require("../mongoose.config");
 const UserSchema = mongoose.model("User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const login = (req, res, next) => {
   var password = req.body.password;
@@ -12,7 +13,15 @@ const login = (req, res, next) => {
           res.json({ error: err });
         }
         if (result) {
-          res.json({ status: 200, message: "login success", data: user });
+          let token = jwt.sign({ name: user.email }, "verySecretValue", {
+            expiresIn: "1h",
+          });
+          res.json({
+            status: 200,
+            message: "login success",
+            data: user,
+            token,
+          });
         } else {
           res.json({
             status: 600,
