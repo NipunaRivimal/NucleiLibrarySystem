@@ -49,6 +49,19 @@ var BookController = function () {
     });
   };
 
+  this.getSelectedByUser = function (id) {
+    return new Promise((resolve, reject) => {
+      BookSchema.find({ borrower: id })
+        .exec()
+        .then((data) => {
+          resolve({ status: 200, message: "get selected books", data: data });
+        })
+        .catch((err) => {
+          reject({ status: 404, message: "err:-" + err });
+        });
+    });
+  };
+
   this.getSingle = function (id) {
     return new Promise((resolve, reject) => {
       BookSchema.find({ _id: id })
@@ -65,7 +78,7 @@ var BookController = function () {
   this.getFilteredName = function (name) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
-      var query = { name: new RegExp("^" + name) };
+      var query = { name: new RegExp("^" + name, "i") };
       // UserSchema.find({ firstname: { $search: name } })
       BookSchema.find(query)
         .exec()
@@ -81,7 +94,7 @@ var BookController = function () {
   this.getFilteredAuthor = function (author) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
-      var query = { author: new RegExp("^" + author) };
+      var query = { author: new RegExp("^" + author, "i") };
       // UserSchema.find({ firstname: { $search: name } })
       BookSchema.find(query)
         .exec()

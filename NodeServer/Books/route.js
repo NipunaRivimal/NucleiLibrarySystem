@@ -43,6 +43,17 @@ router.get("/getselectedbooks/:id", (req, res) => {
     });
 });
 
+router.get("/getselectedbooksbyuser/:id", (req, res) => {
+  controller
+    .getSelectedByUser(req.params.id)
+    .then((response) => {
+      res.status(response.status).send(response);
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+});
+
 router.get("/getsinglebook/:id", (req, res) => {
   controller
     .getSingle(req.params.id)

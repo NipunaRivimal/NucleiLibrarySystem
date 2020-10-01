@@ -36,6 +36,16 @@ const BookSchema = new Schema({
     type: String,
     require: false,
   },
+
+  issueddate: {
+    type: String,
+    require: false,
+  },
+
+  returndate: {
+    type: String,
+    require: false,
+  },
 });
 
 const UserSchema = new Schema({
@@ -64,12 +74,17 @@ const UserSchema = new Schema({
     require: true,
   },
 
-  username: {
+  email: {
     type: String,
     require: true,
   },
 
   password: {
+    type: String,
+    require: true,
+  },
+
+  usertype: {
     type: String,
     require: true,
   },
