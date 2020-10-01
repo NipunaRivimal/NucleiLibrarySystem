@@ -3,5 +3,6 @@
 requirements - run mongodb
  
 setup server
-1. npm install
-2. npm run devStart
+1. cd NodeServer
+2. npm install
+3. npm run devStart
