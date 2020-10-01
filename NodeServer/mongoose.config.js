@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//schema for book details
 const BookSchema = new Schema({
   bookcode: {
     type: String,
@@ -48,6 +49,7 @@ const BookSchema = new Schema({
   },
 });
 
+//schema for member details
 const UserSchema = new Schema({
   userid: {
     type: String,

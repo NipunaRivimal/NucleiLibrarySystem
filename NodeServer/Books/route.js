@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const controller = require("./controller");
 
+//add new book and return all books
 router.post("/addbook", (req, res) => {
   controller
     .add(req.body)
     .then((response) => {
-      //   res.status(response.status).send(response);
       controller
         .getAll()
         .then((response) => {
@@ -21,6 +21,7 @@ router.post("/addbook", (req, res) => {
     });
 });
 
+//return all books
 router.get("/getallbooks", (req, res) => {
   controller
     .getAll()
@@ -32,6 +33,7 @@ router.get("/getallbooks", (req, res) => {
     });
 });
 
+//return book according to issue status
 router.get("/getselectedbooks/:id", (req, res) => {
   controller
     .getSelected(req.params.id)
@@ -43,6 +45,7 @@ router.get("/getselectedbooks/:id", (req, res) => {
     });
 });
 
+//return books according to user id
 router.get("/getselectedbooksbyuser/:id", (req, res) => {
   controller
     .getSelectedByUser(req.params.id)
@@ -54,6 +57,7 @@ router.get("/getselectedbooksbyuser/:id", (req, res) => {
     });
 });
 
+//return book according to book id
 router.get("/getsinglebook/:id", (req, res) => {
   controller
     .getSingle(req.params.id)
@@ -65,6 +69,7 @@ router.get("/getsinglebook/:id", (req, res) => {
     });
 });
 
+//return books according to book name
 router.get("/getfilteredbooksname/:name", (req, res) => {
   controller
     .getFilteredName(req.params.name)
@@ -76,6 +81,7 @@ router.get("/getfilteredbooksname/:name", (req, res) => {
     });
 });
 
+//return book according to author
 router.get("/getfilteredbooksauthor/:author", (req, res) => {
   controller
     .getFilteredAuthor(req.params.author)
@@ -87,11 +93,11 @@ router.get("/getfilteredbooksauthor/:author", (req, res) => {
     });
 });
 
+//update book and return book according to id
 router.put("/updatebooks/:id", (req, res) => {
   controller
     .update(req.params.id, req.body)
     .then((response) => {
-      //   res.status(response.status).send(response);
       controller
         .getSingle(req.params.id)
         .then((response) => {
@@ -106,11 +112,11 @@ router.put("/updatebooks/:id", (req, res) => {
     });
 });
 
+//delete book and return all books
 router.delete("/deletebook/:id", (req, res) => {
   controller
     .delete(req.params.id)
     .then((response) => {
-      // res.status(response.status).send(response);
       controller
         .getAll()
         .then((response) => {

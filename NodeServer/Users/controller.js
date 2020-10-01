@@ -3,6 +3,7 @@ const UserSchema = mongoose.model("User");
 const bcrypt = require("bcrypt");
 
 var UserController = function () {
+  //add new member
   this.add = async function (userInstance) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(userInstance.password, salt);
@@ -28,6 +29,7 @@ var UserController = function () {
     });
   };
 
+  //get all members
   this.getAll = function () {
     return new Promise((resolve, reject) => {
       UserSchema.find()
@@ -41,6 +43,7 @@ var UserController = function () {
     });
   };
 
+  //get member according to id
   this.getSingle = function (id) {
     return new Promise((resolve, reject) => {
       UserSchema.find({ _id: id })
@@ -54,11 +57,10 @@ var UserController = function () {
     });
   };
 
+  //get members according to first name
   this.getFilteredName = function (name) {
     return new Promise((resolve, reject) => {
-      // var regex = RegExp("/.*" + name + ".*/");
       var query = { firstname: new RegExp("^" + name, "i") };
-      // UserSchema.find({ firstname: { $search: name } })
       UserSchema.find(query)
         .exec()
         .then((data) => {
@@ -70,11 +72,10 @@ var UserController = function () {
     });
   };
 
+  //get members according to member id
   this.getFilteredId = function (id) {
     return new Promise((resolve, reject) => {
-      // var regex = RegExp("/.*" + name + ".*/");
       var query = { userid: new RegExp("^" + id, "i") };
-      // UserSchema.find({ firstname: { $search: name } })
       UserSchema.find(query)
         .exec()
         .then((data) => {
@@ -86,6 +87,7 @@ var UserController = function () {
     });
   };
 
+  //update member
   this.update = function (id, updateData) {
     return new Promise((resolve, reject) => {
       UserSchema.updateOne({ _id: id }, updateData)
@@ -98,6 +100,7 @@ var UserController = function () {
     });
   };
 
+  //delete member
   this.delete = function (id) {
     return new Promise((resolve, reject) => {
       UserSchema.deleteOne({ _id: id })

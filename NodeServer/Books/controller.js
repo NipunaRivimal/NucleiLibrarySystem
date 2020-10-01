@@ -2,6 +2,7 @@ const mongoose = require("../mongoose.config");
 const BookSchema = mongoose.model("Book");
 
 var BookController = function () {
+  //add new book
   this.add = function (bookInstance) {
     return new Promise((resolve, reject) => {
       var Book = new BookSchema({
@@ -23,6 +24,7 @@ var BookController = function () {
     });
   };
 
+  //get all books
   this.getAll = function () {
     return new Promise((resolve, reject) => {
       BookSchema.find()
@@ -36,6 +38,7 @@ var BookController = function () {
     });
   };
 
+  //get books according to issue status
   this.getSelected = function (status) {
     return new Promise((resolve, reject) => {
       BookSchema.find({ issuestatus: status })
@@ -49,6 +52,7 @@ var BookController = function () {
     });
   };
 
+  //get books according to borrowed user id
   this.getSelectedByUser = function (id) {
     return new Promise((resolve, reject) => {
       BookSchema.find({ borrower: id })
@@ -62,6 +66,7 @@ var BookController = function () {
     });
   };
 
+  //get single book according to book id
   this.getSingle = function (id) {
     return new Promise((resolve, reject) => {
       BookSchema.find({ _id: id })
@@ -75,6 +80,7 @@ var BookController = function () {
     });
   };
 
+  //get books according to book name
   this.getFilteredName = function (name) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
@@ -91,6 +97,7 @@ var BookController = function () {
     });
   };
 
+  //get books according to author
   this.getFilteredAuthor = function (author) {
     return new Promise((resolve, reject) => {
       // var regex = RegExp("/.*" + name + ".*/");
@@ -107,6 +114,7 @@ var BookController = function () {
     });
   };
 
+  //update book
   this.update = function (id, updateData) {
     return new Promise((resolve, reject) => {
       BookSchema.updateOne({ _id: id }, updateData)
@@ -119,6 +127,7 @@ var BookController = function () {
     });
   };
 
+  //delete book
   this.delete = function (id) {
     return new Promise((resolve, reject) => {
       BookSchema.deleteOne({ _id: id })
